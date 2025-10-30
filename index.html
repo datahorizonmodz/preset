@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DATZON PRESET</title>
+  <style>
+    body {font-family:'Poppins',sans-serif;background-color:#f8f9fa;margin:0;padding:0;}
+    header {background:#1a1a1a;color:white;padding:1rem;text-align:center;}
+    header input {margin-top:10px;padding:0.5rem;width:80%;max-width:400px;border-radius:8px;border:none;}
+    main {display:flex;flex-direction:column;align-items:center;padding:1rem;}
+
+    /* FIX video rasio 16:9 sempurna */
+    .video-card {
+      background:white;
+      border-radius:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      margin:1rem 0;
+      padding:0.8rem;
+      width:95%;
+      max-width:700px;
+      text-align:center;
+    }
+
+    .video-wrapper {
+      width:100%;
+      aspect-ratio:16 / 9; /* Rasio 16:9 tetap proporsional */
+      overflow:hidden;
+      border-radius:12px;
+    }
+
+    .video-wrapper iframe {
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .video-title {text-align:left;font-size:1.1rem;font-weight:600;margin-top:0.8rem;color:#333;}
+    .preset-btn {background-color:#007bff;color:white;border:none;padding:0.6rem 1.2rem;border-radius:6px;cursor:pointer;margin-top:0.5rem;font-weight:bold;}
+    .preset-btn:hover {background-color:#0056b3;}
+    .preset-detail {text-align:center;padding:2rem;}
+    .link-btn {display:block;background-color:#28a745;color:white;padding:0.7rem;margin:0.5rem auto;border-radius:8px;text-decoration:none;width:220px;transition:background 0.3s;}
+    .link-btn:hover {background-color:#218838;}
+    .back-btn {background-color:#6c757d;color:white;border:none;padding:0.6rem 1.2rem;border-radius:6px;cursor:pointer;margin-top:1rem;}
+    .back-btn:hover {background-color:#5a6268;}
+    .pagination {display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1rem;}
+    .page-btn {background:#007bff;color:white;border:none;padding:0.6rem 1rem;border-radius:8px;cursor:pointer;font-size:1.2rem;font-weight:bold;transition:background 0.3s;}
+    .page-btn:hover {background:#0056b3;}
+    .page-info {font-weight:600;color:#333;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DATZON PRESET</h1>
+    <input type="text" id="searchInput" placeholder="Cari video preset..." onkeyup="searchVideo()">
+  </header>
+
+  <main id="content">
+
+    <!-- Halaman Utama -->
+    <div id="homePage">
+
+      <div class="video-card" data-title="Preset 1">
+        <div class="video-wrapper">
+          <iframe src="https://youtu.be/MEawWVhnnrs?si=MxnSTsBIOmq_ILRl" title="Video Preset 1" allowfullscreen></iframe>
+        </div>
+        <h3 class="video-title">Preset 1</h3>
+        <button class="preset-btn" onclick="showPreset('preset1')">PRESET</button>
+      </div>
+
+      <div class="video-card" data-title="Preset 2">
+        <div class="video-wrapper">
+          <iframe src="https://youtu.be/VwprPxp5QdE?si=FNn6GqQVsAiJzuOD" title="Video Preset 2" allowfullscreen></iframe>
+        </div>
+        <h3 class="video-title">Preset 2</h3>
+        <button class="preset-btn" onclick="showPreset('preset2')">PRESET</button>
+      </div>
+
+      <div class="video-card" data-title="Preset 3">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/dummy3" title="Video Preset 3" allowfullscreen></iframe>
+        </div>
+        <h3 class="video-title">Preset 3</h3>
+        <button class="preset-btn" onclick="showPreset('preset3')">PRESET</button>
+      </div>
+
+      <div class="video-card" data-title="Preset 4">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/dummy4" title="Video Preset 4" allowfullscreen></iframe>
+        </div>
+        <h3 class="video-title">Preset 4</h3>
+        <button class="preset-btn" onclick="showPreset('preset4')">PRESET</button>
+      </div>
+
+      <div class="pagination">
+        <span class="page-info">Halaman 1 dari 1</span>
+      </div>
+    </div>
+
+    <!-- Detail Preset 1 -->
+    <div id="preset1" style="display:none">
+      <div class="preset-detail">
+        <h2>Preset 1</h2>
+        <p>Copyright:</p>
+        <a href="https://wa.me/628111111111" target="_blank" class="link-btn">Saluran WhatsApp</a>
+        <a href="https://www.tiktok.com/@sound_preset1" target="_blank" class="link-btn">Sound TikTok</a>
+        <p>Download Preset:</p>
+        <a href="https://example.com/preset1.xml" target="_blank" class="link-btn">Download XML</a>
+        <a href="https://example.com/preset1-5mb.zip" target="_blank" class="link-btn">Download 5MB+</a>
+        <button onclick="goBack()" class="back-btn">Kembali</button>
+      </div>
+    </div>
+
+    <!-- Detail Preset 2 -->
+    <div id="preset2" style="display:none">
+      <div class="preset-detail">
+        <h2>Preset 2</h2>
+        <p>Copyright:</p>
+        <a href="https://wa.me/628222222222" target="_blank" class="link-btn">Saluran WhatsApp</a>
+        <a href="https://www.tiktok.com/@sound_preset2" target="_blank" class="link-btn">Sound TikTok</a>
+        <p>Download Preset:</p>
+        <a href="https://example.com/preset2.xml" target="_blank" class="link-btn">Download XML</a>
+        <a href="https://example.com/preset2-5mb.zip" target="_blank" class="link-btn">Download 5MB+</a>
+        <button onclick="goBack()" class="back-btn">Kembali</button>
+      </div>
+    </div>
+
+    <!-- Detail Preset 3 -->
+    <div id="preset3" style="display:none">
+      <div class="preset-detail">
+        <h2>Preset 3</h2>
+        <p>Copyright:</p>
+        <a href="https://wa.me/628333333333" target="_blank" class="link-btn">Saluran WhatsApp</a>
+        <a href="https://www.tiktok.com/@sound_preset3" target="_blank" class="link-btn">Sound TikTok</a>
+        <p>Download Preset:</p>
+        <a href="https://example.com/preset3.xml" target="_blank" class="link-btn">Download XML</a>
+        <a href="https://example.com/preset3-5mb.zip" target="_blank" class="link-btn">Download 5MB+</a>
+        <button onclick="goBack()" class="back-btn">Kembali</button>
+      </div>
+    </div>
+
+    <!-- Detail Preset 4 -->
+    <div id="preset4" style="display:none">
+      <div class="preset-detail">
+        <h2>Preset 4</h2>
+        <p>Copyright:</p>
+        <a href="https://wa.me/628444444444" target="_blank" class="link-btn">Saluran WhatsApp</a>
+        <a href="https://www.tiktok.com/@sound_preset4" target="_blank" class="link-btn">Sound TikTok</a>
+        <p>Download Preset:</p>
+        <a href="https://example.com/preset4.xml" target="_blank" class="link-btn">Download XML</a>
+        <a href="https://example.com/preset4-5mb.zip" target="_blank" class="link-btn">Download 5MB+</a>
+        <button onclick="goBack()" class="back-btn">Kembali</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function showPreset(id){
+      document.getElementById('homePage').style.display='none';
+      document.getElementById(id).style.display='block';
+    }
+    function goBack(){
+      const sections=document.querySelectorAll('[id^=preset]');
+      sections.forEach(sec=>sec.style.display='none');
+      document.getElementById('homePage').style.display='block';
+    }
+    function searchVideo(){
+      const input=document.getElementById('searchInput').value.toLowerCase();
+      const cards=document.querySelectorAll('.video-card');
+      cards.forEach(card=>{
+        const title=card.getAttribute('data-title').toLowerCase();
+        card.style.display=title.includes(input)?'block':'none';
+      });
+    }
+  </script>
+</body>
+</html>
