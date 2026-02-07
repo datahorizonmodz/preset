@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DATZON PRESET</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+  *{box-sizing:border-box;}
+    body {
+      font-family: 'Quicksand', Arial, sans-serif !important;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; }
+    .search-toggle {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    #searchInput {
+      padding: 0.5rem 1rem;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+    #darkToggle {
+      cursor: pointer;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    #darkToggle:hover { background: #0056b3; }
+    .notice-bar {
+  background: #fff3cd;
+  color: #856404;
+  border-left: 5px solid #ffecb5;
+  padding: 0.8rem 1rem;
+  margin: 0;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .video-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+      opacity: 0;
+    }
+    .video-card.visible {
+      opacity: 1;
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .video-wrapper {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-bottom: 1px solid #eee;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0.8rem 0;
+    }
+    .preset-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      transition: background 0.3s ease;
+    }
+    .preset-btn:hover {
+      background-color: #0056b3;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .page-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .page-btn:hover { background: #0056b3; }
+    .page-info { font-weight: 600; }
+
+    /* Dark mode */
+    body.dark {
+      background-color: #0d0d0d;
+      color: #e5e5e5;
+    }
+    body.dark header { background: #000; }
+    body.dark .video-card { background: #1a1a1a; color: #fff; box-shadow: 0 4px 20px rgba(255,255,255,0.05); }
+    body.dark .preset-btn { background: #0d6efd; }
+  </style>
+  <script type='text/javascript' src='//pl27971081.effectivegatecpm.com/75/4d/89/754d89bb0699b528a6f6b846376e68cb.js'></script>
+</head>
+<body>
+  <header>
+    <h1>DATZON PRESET</h1>
+    <div class="search-toggle">
+      <input type="text" id="searchInput" placeholder="Cari video preset...">
+      <button id="darkToggle">🌙</button>
+    </div>
+  </header>
+  <div class="notice-bar">
+  ⚠️ <b>Pemberitahuan:</b> Website ini masih dalam tahap pengembangan. Beberapa link mungkin belum aktif sepenuhnya. dan jika muncul iklan, kembali aja ya lalu klik lagi, Thanks.
+</div>
+  <main>
+    <div class="video-grid" id="videoGrid"></div>
+    <div class="pagination">
+      <button class="page-btn" id="prevBtn">&laquo;</button>
+      <span class="page-info" id="pageInfo">Halaman 1 dari 1</span>
+      <button class="page-btn" id="nextBtn">&raquo;</button>
+    </div>
+  </main>
+
+  <script>
+    const presets = [
+      { title: 'Preset 1', video: 'https://www.youtube.com/embed/CxgzzQNFRY4', link: 'preset1.html' },
+      { title: 'Preset 2', video: 'https://www.youtube.com/embed/NrKeXocMEEw', link: 'preset2.html' },
+      { title: 'Preset 3', video: 'https://www.youtube.com/embed/Sl2Jjfk9Hj8', link: 'preset3.html' },
+      { title: 'Preset 4', video: 'https://www.youtube.com/embed/MEawWVhnnrs', link: 'preset4.html' },
+      { title: 'Preset 5', video: 'https://www.youtube.com/embed/ZoBsEyr8cp8', link: 'preset5.html' },
+      { title: 'Preset 6', video: 'https://www.youtube.com/embed/CV1gAT2n6bQ', link: 'preset6.html' },
+      { title: 'Preset 7', video: 'https://www.youtube.com/embed/fQRD74l-V5A', link: 'preset7.html' },
+      { title: 'Preset 8', video: 'https://www.youtube.com/embed/btd-5o2Y2kg', link: 'preset8.html' },
+      { title: 'Preset 9', video: 'https://www.youtube.com/embed/NxWzsAPwEAo', link: 'preset9.html' },
+      { title: 'Preset 10', video: 'https://www.youtube.com/embed/9gR8A_VpKY4', link: 'preset10.html'},
+      { title: 'Preset 11', video: 'https://www.youtube.com/embed/ySjWtYEDnTg', link: 'preset11.html' },
+      { title: 'Preset 12', video: 'https://www.youtube.com/embed/ua5xvHBIPLc', link: 'preset12.html' },
+      { title: 'Preset 13', video: 'https://www.youtube.com/embed/1dSiU18ytog', link: 'preset13.html' },
+      { title: 'Preset 14', video: 'https://www.youtube.com/embed/0oDOsqePXo8', link: 'preset14.html' },
+      { title: 'Preset 15', video: 'https://www.youtube.com/embed/Rae9gDp1Xdo', link: 'preset15.html' }
+    ];
+
+    const videoGrid = document.getElementById('videoGrid');
+    const searchInput = document.getElementById('searchInput');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageInfo = document.getElementById('pageInfo');
+
+    const itemsPerPage = 10;
+    let currentPage = 1;
+    let filteredPresets = presets;
+
+    function renderPresets() {
+      videoGrid.innerHTML = '';
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageItems = filteredPresets.slice(start, end);
+
+      pageItems.forEach(preset => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <div class="video-wrapper">
+            <iframe src="${preset.video}" title="${preset.title}" allowfullscreen></iframe>
+          </div>
+          <h3 class="video-title">${preset.title}</h3>
+          <button class="preset-btn" onclick="location.href='${preset.link}'">PRESET</button>
+        `;
+        videoGrid.appendChild(card);
+        setTimeout(() => card.classList.add('visible'), 100);
+      });
+
+      const totalPages = Math.ceil(filteredPresets.length / itemsPerPage);
+      pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPresets();
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+    });
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredPresets.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPresets();
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+    });
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase();
+      filteredPresets = presets.filter(p => p.title.toLowerCase().includes(q));
+      currentPage = 1;
+      renderPresets();
+    });
+
+    document.getElementById('darkToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+
+    renderPresets();
+  </script>
+</body>
+</html>
